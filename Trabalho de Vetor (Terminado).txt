@@ -1,0 +1,358 @@
+// Mateus Garcia Zaniboni Barrientos
+// Ryan Pedro T.Batista
+import java.util.Scanner;
+import java.util.Random;
+
+public class Vetor_sóq_do_capeta {
+
+	public static void main(String[] args) {
+
+		Scanner teclado = new Scanner(System.in);
+
+		int vetor[] = new int[10];
+
+		int d1 = 0;
+		int vetorColetado[] = new int[10];
+		int ranger[] = new int[10];
+
+		while (true) {
+
+			System.out.println("1° opção: coleta de dados do vetor");
+			System.out.println("2° opção: gera valores ramômicos para o vertor");
+			System.out.println("3° opção: imprime dados do vetor");
+			System.out.println("4° opção: imprime vetor invertido");
+			System.out.println("5° opção: soma valores vetor");
+			System.out.println("6° opção: soma personalisada de vetors do valor");
+			System.out.println("7° opção: média dos valores do vetor");
+			System.out.println("8° opção: maior valor drentro do vetor");
+			System.out.println("9° opção: menor valor dentro do vetor");
+			System.out.println();
+			System.out.println("digite 0 para sair");
+			System.out.println();
+			System.out.println("digite a opção desejada:");
+			System.out.println("_____________________________________________________");
+			System.out.println();
+
+			int d = teclado.nextInt();
+			if (d == 0) {
+				System.out.println(" ");
+				break;
+			}
+
+			if (d == 1) {
+
+				vetorColetado = coletaVetor(vetor);
+				d1 = 1;
+			}
+
+			if (d == 2) {
+
+				System.out.println("Insira o valor máximo");
+				int max = teclado.nextInt();
+				d1 = 2;
+
+				ranger = geraVetorRandomico(vetor, max);
+			}
+			if (d == 3) {
+
+				if (d1 == 1) {
+
+					imprimeVetor(vetorColetado);
+
+				} else if (d1 == 2) {
+					imprimeVetor(ranger);
+				}
+			}
+			if (d == 4) {
+
+				if (d1 == 1) {
+
+					imprimeVetorInvertido(vetorColetado);
+
+				} else if (d1 == 2) {
+					imprimeVetorInvertido(ranger);
+				}
+
+			}
+			if (d == 5) {
+
+				if (d1 == 1) {
+
+					somaTodos(vetorColetado);
+					int r = somaTodos(vetorColetado);
+					System.out.println("Soma de todos os valores: " + r);
+				} else if (d1 == 2) {
+
+					somaTodos(ranger);
+					int r = somaTodos(ranger);
+					System.out.println("Soma de todos os valores: " + r);
+				}
+
+			}
+
+			if (d == 6) {
+
+				System.out.println(
+						"Me informe o primeiro índice, tenha em mente que ele precisa ser menor so que o segundo");
+				int inicio = teclado.nextInt();
+
+				System.out.println(
+						"Agora me informe o último índice, tendo em mente que ele deve ser maior que o primeiro");
+				int termino = teclado.nextInt();
+
+				if (d1 == 1) {
+
+					somaPersonalizada(vetorColetado, inicio, termino);
+					int sope = somaPersonalizada(vetorColetado, inicio, termino);
+
+					System.out.println(
+							"A soma dos valores entre o " + inicio + "º número e o " + termino + "º número é: " + sope);
+				} else if (d1 == 2) {
+
+					somaPersonalizada(ranger, inicio, termino);
+					int sope = somaPersonalizada(ranger, inicio, termino);
+
+					System.out.println(
+							"A soma dos valores entre o " + inicio + "º número e o " + termino + "º número é: " + sope);
+				}
+			}
+
+			if (d == 7) {
+
+				if (d1 == 1) {
+
+					media(vetorColetado);
+					double r = media(vetorColetado);
+					System.out.println("Sua média é: " + r);
+				} else if (d1 == 2) {
+
+					media(ranger);
+					double r = media(ranger);
+					System.out.println("Sua média é: " + r);
+				}
+
+			}
+			if (d == 8) {
+
+				if (d1 == 1) {
+
+					maiorValor(vetorColetado);
+					int MV = maiorValor(vetorColetado);
+
+					System.out.println("O maior valor do seu vetor é: " + MV);
+				} else if (d1 == 2) {
+
+					maiorValor(ranger);
+					int MV = maiorValor(ranger);
+
+					System.out.println("O maior valor do seu vetor é: " + MV);
+				}
+			}
+			if (d == 9) {
+
+				if (d1 == 1) {
+
+					menorValor(vetorColetado);
+					int mv = menorValor(vetorColetado);
+
+					System.out.println("O menor valor do seu vetor é: " + mv);
+				}
+
+				if (d1 == 2) {
+
+					menorValor(ranger);
+					int mv = menorValor(ranger);
+
+					System.out.println("O menor valor do seu vetor é: " + mv);
+				}
+			} else {
+				System.out.println(" ");
+				System.out.println("Opção inválida");
+				System.out.println(" ");
+			}
+			System.out.println(" ");
+			System.out.print("Ensira uma nova opção: ");
+		}
+		System.out.println(" ");
+		System.out.println("Fim do algoritmo");
+
+	}
+
+	public static int[] coletaVetor(int[] vetor) {
+
+		Scanner teclado = new Scanner(System.in);
+
+		int[] y = vetor;
+
+		for (int u = 0; u < 10; u++) {
+
+			System.out.println("Me informe o " + (u + 1) + "º número: ");
+			y[u] = teclado.nextInt();
+
+		}
+
+		return y;
+
+	}
+
+	public static int[] geraVetorRandomico(int[] vetor, int max) {
+
+		int x = max;
+		int bagui = 0;
+
+		Random ale = new Random();
+		Scanner teclado = new Scanner(System.in);
+
+		int[] vt = vetor;
+
+		for (int u = 0; u < 10; u++) {
+
+			vt[u] = ale.nextInt(x + 1);
+
+			if (bagui == 0) {
+
+				System.out.print("Os seus números são: " + vt[u]);
+
+				bagui++;
+
+			}
+
+			else {
+				System.out.print(", " + vt[u]);
+
+			}
+
+		}
+		System.out.println(".");
+
+		return vt;
+
+	}
+
+	public static void imprimeVetor(int[] vetor) {
+
+		int bagui = 0;
+
+		for (int u = 0; u < 10; u++) {
+
+			if (bagui == 0) {
+				System.out.println(" ");
+				System.out.print("Os seus números aleatórios são: " + vetor[u]);
+
+				bagui++;
+
+			}
+
+			else {
+				System.out.print(", " + vetor[u]);
+
+			}
+
+		}
+		System.out.println(".");
+
+	}
+
+	public static void imprimeVetorInvertido(int[] vetor) {
+
+		int bagui = 0;
+
+		for (int u = 9; u > -1; u--) {
+
+			if (bagui == 0) {
+				System.out.println(" ");
+				System.out.print("Os seus números invertidos são: " + vetor[u]);
+
+				bagui--;
+
+			}
+
+			else {
+				System.out.print(", " + vetor[u]);
+
+			}
+
+		}
+		System.out.println(".");
+
+	}
+
+	public static int somaTodos(int[] vetor) {
+
+		int r = 0;
+
+		for (int u = 0; u < 10; u++) {
+
+			r = r + vetor[u];
+		}
+
+		return r;
+
+	}
+
+	public static int somaPersonalizada(int[] vetor, int inicio, int termino) {
+
+		int total = 0;
+
+		if (inicio > termino || inicio > 10 || termino > 10 || inicio < 0 || termino < 0) {
+
+			System.out.println("Valores inválidos, por favor tente novamente");
+			return 0;
+		}
+
+		for (int u = 0; u < 10; u++) {
+
+			if (u >= inicio && u <= termino) {
+
+				total = total + vetor[u - 1];
+
+			}
+
+		}
+		return total;
+	}
+
+	public static double media(int[] vetor) {
+		double r = 0;
+
+		for (int u = 0; u < 10; u++) {
+
+			r = r + vetor[u];
+		}
+		double r2 = (r / 10);
+
+		return r2;
+	}
+
+	public static int maiorValor(int[] vetor) {
+
+		int maior = vetor[0];
+
+		for (int u = 0; u < 10; u++) {
+
+			if (vetor[u] > maior) {
+
+				maior = vetor[u];
+			}
+		}
+
+		return maior;
+	}
+
+	public static int menorValor(int[] vetor) {
+
+		int menor = vetor[0];
+
+		for (int u = 0; u < 10; u++) {
+
+			if (vetor[u] < menor) {
+
+				menor = vetor[u];
+			}
+		}
+
+		return menor;
+
+	}
+
+}
